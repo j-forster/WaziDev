@@ -40,8 +40,11 @@ class WaziDev
 public:
     WaziDev();
 
-    // Initialize the LoRa (and LoRaWAN) hardware radio chip. 
+    // Initialize the LoRa hardware radio chip and store the key and the devAddr.
     uint8_t setupLoRaWAN(const uint8_t *devAddr, const uint8_t *key);
+
+    // Initialize the LoRa hardware radio chip. 
+    uint8_t setupLoRa();
 
     // Change the LoRa (and LoRaWAN) frequency in Hz.
     // Default: 868100000 (868.1 MHz).

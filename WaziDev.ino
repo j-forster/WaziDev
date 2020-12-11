@@ -18,7 +18,7 @@ void setup()
   uint8_t e = wazidev.setupLoRaWAN(DevAddr, LoRaWANKey);
   if (e != 0)
   {
-    serialPrintf("Err %ld %ld %ld\n", e<0, e>0, e);
+    serialPrintf("Err %d\n", e);
     while (true);
     return;
   }
@@ -54,7 +54,7 @@ void loop(void)
   if (e != 0)
   {
     if (e == ERR_LORA_TIMEOUT){
-      serialPrintf("nothing received");
+      serialPrintf("nothing received\n");
     }
     else
     {
@@ -64,7 +64,7 @@ void loop(void)
     return;
   }
   serialPrintf("OK\n");
-  
+
   serialPrintf("Time On Air: %d ms\n", endSend-startSend);
   serialPrintf("Received: [%d] \"%s\"\n", len, payload+offs);
   serialPrintf("LoRa SNR: %d\n", wazidev.loRaSNR);

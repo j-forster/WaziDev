@@ -17,12 +17,15 @@ struct EEPROMConfig
 
 uint8_t WaziDev::setupLoRaWAN(const uint8_t *devAddr, const uint8_t *key)
 {
-    uint8_t e;
     memcpy(AppSkey, key, 16);
     memcpy(NwkSkey, key, 16);
+    return setupLoRa();
+}
 
+uint8_t WaziDev::setupLoRa()
+{
     // Power ON the module
-    e = sx1272.ON();
+    int e = sx1272.ON();
     if (e != 0) return e;
 
     // get config from EEPROM
