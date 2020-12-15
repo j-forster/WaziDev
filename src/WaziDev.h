@@ -79,13 +79,17 @@ public:
     // Returns an error != 0 (if any): ERR_LORA_CRC, ERR_LORA_TIMEOUT
     uint8_t receiveLoRaWAN(void *pl, uint8_t *offs, uint8_t *len, uint16_t timeout);
 
-    // LoRa signal-to-noise ratio. Higher means better.
+    // LoRa SNR (signal-to-noise ratio) value in dB. Higher means better.
+    // It will be -20dB (below noise floor) to +10dB (above noise floor).
+    // The noise floor is an area of all unwanted interfering signal sources which can corrupt the transmitted signal.
     // It is updated after receiveLoRa() (or LoRaWAN) completed.
-    uint8_t loRaSNR;
-    // LoRa rssi value in dBm.
-    // Higher means better.
+    // Learn more: https://lora.readthedocs.io/en/latest/#snr
+    int8_t loRaSNR;
+    
+    // LoRa rssi (received signal strength indication) value in dBm. Higher means better.
     // It will be -120dBm (weak signal) to -30dBm (strong signal).
     // It is updated after receiveLoRa() (or LoRaWAN) completed.
+    // Learn more: https://lora.readthedocs.io/en/latest/#snr
     int8_t loRaRSSI;
 };
 
